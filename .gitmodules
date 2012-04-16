@@ -1,0 +1,3 @@
+[submodule "modules/satchless"]
+	path = modules/satchless
+	url = https://github.com/mirumee/satchless.git

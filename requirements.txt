@@ -1,0 +1,7 @@
+git+https://github.com/chrisglass/django-shop-paypal.git
+git+https://github.com/chrisglass/django-shop-simplecategories.git
+git+https://github.com/chrisglass/django-shop-simplevariations.git
+git+https://github.com/bmihelac/django-shop-discounts.git
+git+https://github.com/bitmazk/django-shop-simplenotifications.git
+git+https://github.com/jrief/django-shop-wishlists.git
+

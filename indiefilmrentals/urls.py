@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.defaults import include, patterns
 from session_csrf import anonymous_csrf
 from django.contrib import admin
+from shop import urls as shop_urls # <-- Add this at the top
 admin.autodiscover()
 
 # django-session-csrf monkeypatcher
@@ -22,6 +23,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
+    (r'^shop/', include(shop_urls)), # <-- That's the important bit
 )
 
 ## In DEBUG mode, serve media files through Django.

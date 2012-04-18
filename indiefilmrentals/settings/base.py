@@ -38,7 +38,7 @@ ROOT_URLCONF = 'indiefilmrentals.urls'
 
 INSTALLED_APPS = [
     # Template apps
-    'jingo_minify',
+    #'jingo_minify',
 
     # Django contrib apps
     'django.contrib.auth',
@@ -69,6 +69,9 @@ INSTALLED_APPS = [
     'indiefilmrentals.base',
 
     # Local apps, referenced via indiefilmrentals.appname
+    'polymorphic', # We need polymorphic installed for the shop
+    'shop', # The django SHOP application
+    'shop.addressmodel', # The default Address and country models
 ]
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -147,6 +150,7 @@ MIDDLEWARE_CLASSES = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
+
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -169,7 +173,7 @@ TEMPLATE_DIRS = (
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'jingo.Loader',
+    #'jingo.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )

@@ -72,8 +72,21 @@ INSTALLED_APPS = [
     'polymorphic', # We need polymorphic installed for the shop
     'shop', # The django SHOP application
     'shop.addressmodel', # The default Address and country models
+    'paypal.standard.ipn',
+    'shop_paypal',
 ]
 
+SHOP_PAYMENT_BACKENDS = [
+'shop_paypal.offsite_paypal.OffsitePaypalBackend',
+]
+
+SHOP_SHIPPING_BACKENDS = [
+'indiefilmrentals.base.shipping.SkipShippingBackend',
+]
+
+PAYPAL_RECEIVER_EMAIL = 'blorenz@gmail.com' 
+
+PAYPAL_CURRENCY_CODE = 'USD'
 # Place bcrypt first in the list, so it will be the default password hashing
 # mechanism
 PASSWORD_HASHERS = (

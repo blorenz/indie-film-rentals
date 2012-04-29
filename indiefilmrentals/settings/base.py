@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 
     # Application base, containing global templates.
     'indiefilmrentals.base',
+    'indiefilmrentals.products',
 
     # Local apps, referenced via indiefilmrentals.appname
     'polymorphic', # We need polymorphic installed for the shop
@@ -84,7 +85,7 @@ SHOP_SHIPPING_BACKENDS = [
 'indiefilmrentals.base.shipping.SkipShippingBackend',
 ]
 
-PAYPAL_RECEIVER_EMAIL = 'blorenz@gmail.com' 
+PAYPAL_RECEIVER_EMAIL = 'blorenz@gmail.com'
 
 PAYPAL_CURRENCY_CODE = 'USD'
 # Place bcrypt first in the list, so it will be the default password hashing

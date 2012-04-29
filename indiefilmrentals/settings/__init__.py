@@ -1,6 +1,7 @@
 """ Settings for indiefilmrentals """
 
 from .base import *
+
 try:
     from .local import *
 except ImportError, exc:

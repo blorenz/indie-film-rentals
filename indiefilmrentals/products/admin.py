@@ -2,6 +2,10 @@ from indiefilmrentals.products.models import *
 from django.contrib import admin
 
 
+class ProductTierAdmin(admin.ModelAdmin):
+    filter_horizontal = ['tier', ]
+
+
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     filter_horizontal = ['crossSell', 'links']
@@ -15,4 +19,4 @@ admin.site.register(Lens, ProductAdmin)
 admin.site.register(Lighting, ProductAdmin)
 admin.site.register(Camera, ProductAdmin)
 admin.site.register(Price_Tier)
-admin.site.register(Price_Tier_Package)
+admin.site.register(Price_Tier_Package, ProductTierAdmin)

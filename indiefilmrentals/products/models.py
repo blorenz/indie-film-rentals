@@ -10,9 +10,22 @@ class Price_Tier(models.Model):
     end_day = models.IntegerField(help_text="Upper limit of price tier's range")
     percent = models.FloatField(help_text="Percentage of product base value to apply for this tier.")
 
+    def __unicode__(self):
+        return "Days: %d - %d : %s%%" % (self.start_day, self.end_day, str(self.percent), )
+
+    class Meta:
+        verbose_name = "Price Tier"
+
 
 class Price_Tier_Package(models.Model):
     tier = models.ManyToManyField(Price_Tier)
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return "Tier Package: %s" % (self.name,)
+
+    class Meta:
+        verbose_name = "Price Tier Package"
 
 
 class BaseIndieRentalProduct(Product):
@@ -37,8 +50,7 @@ class BaseIndieRentalProduct(Product):
     links = models.ManyToManyField(Link, help_text="Links to include with this product.", null=True, blank=True)
 
     class Meta:
-        abstract = True
-
+        pass
 
     def save(self, force_insert=False, force_update=False):
         self.description_html = markdown(self.description)
@@ -53,7 +65,6 @@ class Lens(BaseIndieRentalProduct):
 class Camera(BaseIndieRentalProduct):
     class Meta:
         pass
-
 
 
 class Lighting(BaseIndieRentalProduct):

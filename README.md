@@ -3,7 +3,7 @@
 
 ## About ##
 
-Describe your project here.
+A video equipment rental system.
 
 ## Prerequisites ##
 

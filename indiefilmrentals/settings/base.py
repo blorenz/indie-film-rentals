@@ -69,16 +69,25 @@ INSTALLED_APPS = [
     'indiefilmrentals.base',
     'indiefilmrentals.products',
 
+    'shop_simplecategories',
+    'registration',
     # Local apps, referenced via indiefilmrentals.appname
     'polymorphic', # We need polymorphic installed for the shop
     'shop', # The django SHOP application
     'shop.addressmodel', # The default Address and country models
     'paypal.standard.ipn',
     'shop_paypal',
+    'shop_stripe',
+    'userprofile',
 ]
 
+AUTH_PROFILE_MODULE = "userprofile.userprofile"
+
+SHOP_STRIPE_PUBLISHABLE_KEY='pk_K7n9762QPpE5iWlvGc7teYC4pLrYF'
+SHOP_STRIPE_PRIVATE_KEY='yEANFzTxiht22dfQgSgSijMG14N5PHvh'
+
 SHOP_PAYMENT_BACKENDS = [
-'shop_paypal.offsite_paypal.OffsitePaypalBackend',
+    'shop_stripe.offsite_stripe.StripeBackend',
 ]
 
 SHOP_SHIPPING_BACKENDS = [

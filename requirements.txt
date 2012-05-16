@@ -4,4 +4,5 @@ git+https://github.com/chrisglass/django-shop-simplevariations.git
 git+https://github.com/bmihelac/django-shop-discounts.git
 git+https://github.com/bitmazk/django-shop-simplenotifications.git
 git+https://github.com/jrief/django-shop-wishlists.git
-
+hg+https://bitbucket.org/ubernostrum/django-registration
+git+https://github.com/powellc/django-shop-stripe.git

@@ -1,15 +1,22 @@
 from indiefilmrentals.products.models import *
 from django.contrib import admin
+from shop_simplecategories.admin import ProductWithCategoryForm
 
 
 class ProductTierAdmin(admin.ModelAdmin):
     filter_horizontal = ['tier', ]
 
 
+class ProductForm(ProductWithCategoryForm):
+        class Meta(object):
+                    model = BaseIndieRentalProduct
+
+
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     filter_horizontal = ['crossSell', 'links']
     radio_fields = {"price_tier": admin.VERTICAL}
+    form = ProductForm
 
     class Media:
         js = ("js/tinymce/jscripts/tiny_mce/tiny_mce.js", "js/tiny.js", )

@@ -28,6 +28,13 @@ class Price_Tier_Package(models.Model):
         verbose_name = "Price Tier Package"
 
 
+class Brand(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
+
+
 class BaseIndieRentalProduct(Product):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2
@@ -37,6 +44,8 @@ class BaseIndieRentalProduct(Product):
                       (DRAFT_STATUS, 'Draft'),
                       (OHD_ONLY_STATUS, 'OHD Only'),
                       )
+
+    brand = models.ForeignKey(Brand)
 
     description = models.TextField()
     description_html = models.TextField(null=True, blank=True, editable=False)

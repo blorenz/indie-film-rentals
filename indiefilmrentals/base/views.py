@@ -1,7 +1,8 @@
 """ Views for the base application """
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from indiefilmrentals.products.models import Camera
 
 
 def home(request):
@@ -9,7 +10,20 @@ def home(request):
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
 
-def nat(request):
+
+def product(request, slug):
     """ Default view for the nat """
-    return render_to_response('base/nat.html',
+    """ This is an awesome product view """
+
+
+    p = get_object_or_404(Camera, slug=slug)
+
+    # cameras = Camera.objects.all()
+
+    return render_to_response('base/product.html',
+    	{
+		'product': p,
+		'price': p.unit_price * 4,
+    	'name':'Cameras',
+		},
         context_instance=RequestContext(request))

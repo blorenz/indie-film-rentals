@@ -38,89 +38,13 @@
 {% block body %}
 <div class="container">
   <header>
-	<!-- HEADER ================================================== -->
-	<div class="sixteen columns">
-		<!-- LOGO ================================================== -->
-		<div class="one-third column alpha">
-			<div id="logo"><a href="#"><img src="http://wedevu.com/products/responsive/image/data/logo.jpg" title="Indie Film Rentals" alt="Indie Film Rentals"></a></div>
-		</div>
-		<div class="two-thirds column omega">
-			<div class="top-elements no-mobile"></div>
-			<div class="top-elements no-mobile" style="clear:both;">
-				<!-- WELCOME MESSAGE =========================================== -->
-				<div id="welcome-message">Welcome visitor you can <a href="#">login</a> or <a href="#">create an account</a>.</div>
-				<!-- CART LINKS =================================================== -->
-					<div id="cart-links">
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Shopping Cart</a></li>
-							<li><a href="#">Checkout</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="sixteen columns no-desktop"><a href="#" class="button">Checkout Now</a></div>
-		<div class="sixteen columns clearfix pad-top"> 
-		<div id="menu-wrapper" class="row">
-			<!-- NAVIGATION ================================================== -->
-			<div class="twelve columns alpha">
-				<div id="menu">
-					<ul>
-						<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=20">Sony</a></li>
-						<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=18">Cameras</a></li>
-						<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=17">Lighting</a></li>
-						<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=33">Accessories</a></li>
-						<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34">Lenses</a>
-							<div>
-								<ul>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_43">test 11 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_44">test 12 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_47">test 15 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_48">test 16 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_49">test 17 (0)</a></li>
-								</ul>
-								<ul>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_50">test 18 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_51">test 19 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_52">test 20 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_53">test 21 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_54">test 22 (0)</a></li>
-								</ul>
-								<ul>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_55">test 23 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_56">test 24 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_38">test 4 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_37">test 5 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_39">test 6 (0)</a></li>
-								</ul>
-								<ul>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_40">test 7 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_41">test 8 (0)</a></li>
-								<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34_42">test 9 (0)</a></li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div> 
-			<!-- SHOPPING CART ================================================== --> 
-			<div class="four columns omega">
-				<div id="search-box">
-					<input type="text" name="filter_name" placeholder="Search" />
-					<div class="button-search"></div>
-				</div>
-			</div>
-		</div> 
-	</div>
-	<!-- HEADER ================================================== -->
-  </header>
+  	{% include "base/head.html" %}
+	<header>
   <div role="main">
     {% block content %}{% endblock %}
   </div>
   <footer>
-
+	{% include "base/foot.html" %}
   </footer>
 
 

@@ -19,11 +19,3 @@ def product(request, slug):
     p = get_object_or_404(Camera, slug=slug)
 
     # cameras = Camera.objects.all()
-
-    return render_to_response('base/product.html',
-    	{
-		'product': p,
-		'price': p.unit_price * 4,
-    	'name':'Cameras',
-		},
-        context_instance=RequestContext(request))

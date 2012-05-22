@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_class %}home-page{% endblock %}
+{% block content %}
+<!-- sixteen column block for 5 column of product -->
+<div class="sixteen columns">
+	<div class="mod-horiz"></div>
+	<div class="box">
+		<div class="box-heading">{{ name }}</div>
+		<div class="box-content">
+		{% for product in cameras %}
+			<div class="box-product">
+				<div>
+					<div class="image clear-both"><a href="#{{product_link}}"><img src="{{product_image}}" alt="iMac" />{{product.name}}</a></div>
+					<div class="name clear-both"><a href="#{{product_link}}">{{product_name}}</a></div>
+					<div class="price">{{product_price}}</div>
+				<div class="cart"><a onclick="addToCart({{product_id}});" class="button"><span>Add to Cart</span></a></div>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block page_class %}product-page{% endblock %}
+{% block content %}
+<div class="sixteen columns category-head row">
+	<h1>{{product.name}}</h1>
+	<div class="breadcrumb">
+		<a href="http://wedevu.com/products/responsive/index.php?route=common/home">Home</a>
+		» <a href="http://wedevu.com/products/responsive/index.php?route=product/product&amp;product_id=40">Lenses</a>
+	</div>
+</div>
+<div class="sixteen columns clearfix">
+   <!-- MAIN WRAPPER -->
+   <div class="twelve columns alpha omega product-info">
+      <div class="mod-horiz">
+      </div>
+      <!-- PRODUCT IMAGES -->
+      <div class="eight columns alpha">
+         <div class="image"><a href="#" title="" rel=""><img src="/static/img/fpo.jpg" title="" alt="" id="image" /></a></div>
+         <div class="image-additional no-mobile">
+            <a href="#" title="" class="fancybox"><img src="/static/img/fpo-80x80.jpg" title="" alt="" /></a>
+         </div>
+      </div>
+      <!-- PRODUCT INFORMATION -->
+      <div class="four columns omega">
+         <a id="button-cart" class="button"><span>Rent Now</span></a>
+         <p>
+			<span>${{price}} for 4 days</span>
+			<br /><span>4-29 day rental</span>
+            <br /><span>+$29 shipping</span>
+         </p>
+      </div>
+      <!-- PRODUCT TABS -->
+      <div class="ten columns clearfix alpha omega description">
+	
+		{% if product.description %}
+			<h2>Description</h2>
+			{% autoescape off %}
+		        {{product.description}}
+			{% endautoescape %}
+		{% endif %}
+		
+        {% if product.links %}
+			<h3>Links</h3>
+			<ul>
+				<li><a href="#">Link</a></li>
+			</ul>
+			 {{ product.links }}
+		{% endif %}
+         
+		<div class="x6 l rr pricing vp">
+			<div class="x">
+				<h2>Pricing</h2>
+				<table class="pricing data">
+					<tbody>
+						<tr>
+							<th width="50%">Rental Period</th>
+							<th width="25%" class="r">Price</th>
+							<th width="25%" class="r">Day Rate</th>
+						</tr>
+					</tbody>
+				</table>
+				{{ product.price_tier }}
+				<table class="pricing data">
+					<tbody>
+						<tr>
+							<th width="25%">Rental Period</th>
+							<th width="25%" class="r">Waiver Price</th>
+							<th width="25%" class="r">Total Price</th>
+							<th width="25%" class="r">Day Rate</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="x6 l rl shipping vp">
+		   <div class="x">
+		      <h2>Shipping</h2>
+		   </div>
+		</div>
+		
+      </div>
+      <div class="mod-horiz">
+      </div>
+   </div>
+   <!-- RIGHT COLUMN ================================================== --> 
+   <div class="four columns omega no-mobile">
+      <div style="padding-left: 10px;">
+         <div class="box">
+            <div class="box-heading">Related</div>
+            <div class="box-content">
+               <div class="box-product">
+                 
+					<div>
+						<div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
+						<div class="name clear-both"><a href="#">product.name</a></div>
+						<div class="price">product.price?</div>
+						<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
+					</div>
+					 {{ product.crossSell }}
+                 
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

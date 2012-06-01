@@ -35,6 +35,21 @@ class Brand(models.Model):
         return self.name
 
 
+def my_upload_to(instance, filename):
+    prefix = 'products'
+
+    # Get name from FKed model
+    name = instance.product.name
+
+    return "%s/Product.%s" % (prefix, name)
+
+
+class ProductImage(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to=my_upload_to)
+
+
 class BaseIndieRentalProduct(Product):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2

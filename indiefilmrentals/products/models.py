@@ -3,6 +3,8 @@ from django.db import models
 from indiefilmrentals.base.models import Link
 
 from markdown import markdown
+from datetime import datetime
+import md5
 
 
 class Price_Tier(models.Model):
@@ -39,15 +41,11 @@ def my_upload_to(instance, filename):
     prefix = 'products'
 
     # Get name from FKed model
-    name = instance.product.name
+#    name = instance.product.name
 
-    return "%s/Product.%s" % (prefix, name)
+    filename = md5.new(str(datetime.now())).hexdigest() + '-' + filename
+    return "%s/%s" % (prefix, filename)
 
-
-class ProductImage(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to=my_upload_to)
 
 
 class BaseIndieRentalProduct(Product):
@@ -94,3 +92,11 @@ class Camera(BaseIndieRentalProduct):
 class Lighting(BaseIndieRentalProduct):
     class Meta:
         pass
+
+
+class ProductImage(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to=my_upload_to)
+    product = models.ForeignKey(BaseIndieRentalProduct)
+

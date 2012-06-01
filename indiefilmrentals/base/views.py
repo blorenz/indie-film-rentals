@@ -10,6 +10,10 @@ def home(request):
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
 
+def brand(request):
+    """ Default view for the root """
+    return render_to_response('base/home.html',
+        context_instance=RequestContext(request))
 
 def category(request, category):
     categoryObj = Category.objects.filter(name=category)

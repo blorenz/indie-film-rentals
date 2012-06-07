@@ -25,6 +25,7 @@ MINIFY_BUNDLES = {
     }
 }
 
+
 SUPPORTED_NONLOCALES = ['media', 'admin', 'static']
 
 # Language code for this installation. All choices can be found here:
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     # Template apps
     #'jingo_minify',
 
+     #'grappelli',
     # Django contrib apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -65,9 +67,6 @@ INSTALLED_APPS = [
     # Database migrations
     'south',
 
-    # Application base, containing global templates.
-    'indiefilmrentals.base',
-    'indiefilmrentals.products',
 
     'shop_simplecategories',
     'registration',
@@ -79,6 +78,13 @@ INSTALLED_APPS = [
     'shop_paypal',
     'shop_stripe',
     'userprofile',
+    'imagekit',
+
+
+
+    # Application base, containing global templates.
+    'indiefilmrentals.base',
+    'indiefilmrentals.products',
 ]
 
 AUTH_PROFILE_MODULE = "userprofile.userprofile"
@@ -250,3 +256,5 @@ JINGO_EXCLUDE_APPS = [
 
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'indiefilmrentals.wsgi.application'
+
+#ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"

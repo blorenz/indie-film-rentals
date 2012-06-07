@@ -6,6 +6,25 @@ from markdown import markdown
 from datetime import datetime
 import md5
 
+from imagekit.models import ImageSpec
+from imagekit.processors import resize
+
+PRODUCT_THUMBNAIL_SIZES = {
+    # The defaults are inspired from the twitter's bootstrap thumbnail sizes
+    'small': {'width': 80, 'height': 80},
+    'medium': {'width': 260, 'height': 180},
+    'large': {'width': 360, 'height': 268},
+}
+
+
+class ThumbnailImageSpec(ImageSpec):
+    def __init__(self, width = None, height = None, format='PNG', image_field = 'image', extra_filters = []):
+        ifilters = [resize.ResizeToFit(width, height)]
+        ifilters.extend(extra_filters)
+        super(ThumbnailImageSpec, self).__init__(ifilters, format=format, image_field = image_field)
+        self.width = width
+        self.height = height
+
 
 class Price_Tier(models.Model):
     start_day = models.IntegerField(help_text="Lower limit of price tier's range")
@@ -46,6 +65,13 @@ def my_upload_to(instance, filename):
     filename = md5.new(str(datetime.now())).hexdigest() + '-' + filename
     return "%s/%s" % (prefix, filename)
 
+
+class Rentable(models.Model):
+    date_out = models.DateField()
+    date_in = models.DateField()
+
+    class Meta:
+        abstract = True
 
 
 class BaseIndieRentalProduct(Product):
@@ -98,5 +124,7 @@ class ProductImage(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to=my_upload_to)
+    thumbnail_small = ThumbnailImageSpec(**PRODUCT_THUMBNAIL_SIZES['small'])
+    thumbnail_large = ThumbnailImageSpec(**PRODUCT_THUMBNAIL_SIZES['large'])
     product = models.ForeignKey(BaseIndieRentalProduct)
 

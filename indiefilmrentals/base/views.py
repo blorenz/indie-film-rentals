@@ -10,7 +10,7 @@ def home(request):
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
 
-def brand(request):
+def brand(request, category, brand):
     """ Default view for the root """
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
@@ -27,7 +27,10 @@ def category(request, category):
 def product(request, brand, slug, category):
     """ Default view for the nat """
     cameras = Camera.objects.all()
-    return render_to_response('base/nat.html',
-        {'cameras':cameras,
+    images = ProductImage.objects.filter(product=cameras[0].id)
+    print images[0]
+    return render_to_response('base/product.html',
+        {'product':cameras[0],
+            'image': images[0],
         'name':'Cameras',},
         context_instance=RequestContext(request))

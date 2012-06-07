@@ -7,3 +7,9 @@ git+https://github.com/jrief/django-shop-wishlists.git
 hg+https://bitbucket.org/ubernostrum/django-registration
 git+https://github.com/powellc/django-shop-stripe.git
 django-imagekit
+stripe
+PIL
+lxml
+django-chosen
+django-grappelli
+

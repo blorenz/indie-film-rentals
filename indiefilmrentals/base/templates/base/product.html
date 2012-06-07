@@ -16,9 +16,9 @@
       </div>
       <!-- PRODUCT IMAGES -->
       <div class="eight columns alpha">
-         <div class="image"><a href="#" title="" rel=""><img src="/static/img/fpo.jpg" title="" alt="" id="image" /></a></div>
+          <div class="image"><a href="#" title="" rel=""><img src="{{ image.image.url }}" title="" alt="" id="image" /></a></div>
          <div class="image-additional no-mobile">
-            <a href="#" title="" class="fancybox"><img src="/static/img/fpo-80x80.jpg" title="" alt="" /></a>
+             <a href="#" title="" class="fancybox"><img src="{{ image.thumbnail_small.url }}" title="" alt="" /></a>
          </div>
       </div>
       <!-- PRODUCT INFORMATION -->
@@ -40,12 +40,13 @@
 			{% endautoescape %}
 		{% endif %}
 		
-        {% if product.links %}
+        {% if product.links.all %}
 			<h3>Links</h3>
 			<ul>
-				<li><a href="#">Link</a></li>
+             {% for link in product.links %}
+             <li><a href="#">{{ link.name }}</a></li>
+             {% endfor %}
 			</ul>
-			 {{ product.links }}
 		{% endif %}
          
 		<div class="x6 l rr pricing vp">
@@ -98,7 +99,9 @@
 						<div class="price">product.price?</div>
 						<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
 					</div>
-					 {{ product.crossSell }}
+                    {% for xsell in product.crossSell.all %}
+					 {{ xsell.name }}
+                     {% endfor %}
                  
                </div>
             </div>

@@ -1,6 +1,9 @@
 from lxml import etree
 import os
 
+UPS_SHIP_CONFIRM_URL_DEV = 'https://wwwcie.ups.com/ups.app/xml/ShipConfirm'
+UPS_SHIP_ACCEPT_URL_DEV = 'https://wwwcie.ups.com/ups.app/xml/ShipAccept'
+
 UPS_API_KEY = '9C99127EB3122933'
 UPS_SHIPPER_NUMBER = '72R97F'
 UPS_LOGIN = 'fewdalism'
@@ -21,6 +24,45 @@ def create_access_request(ar):
     doc.xpath('.//UserId')[0].text = UPS_LOGIN
     doc.xpath('.//Password')[0].text = UPS_PASSWORD
     return etree.tostring(doc)
+
+
+def make_shipper():
+    return {'name': 'Brandon',
+            'phone': '8598015522',
+            'shipper-number': UPS_SHIPPER_NUMBER,
+            'tax-id': '407273308',
+            'address': '3041 Fayburrow Drive',
+            'city': 'Reynoldsburg',
+            'state': 'OH',
+            'postal-code': '43068',
+            'country-code': 'US',
+            }
+
+
+def make_shipto():
+    return {'name': 'Brandon',
+            'company-name': 'Brandon Company',
+            'attention-name': 'Brandon',
+            'phone': '8598015522',
+            'address': '731 Meadowview Drive',
+            'city': 'Villa Hills',
+            'state': 'KY',
+            'postal-code': '41017',
+            'country-code': 'US',
+            }
+
+
+def make_shipfrom():
+    return {'name': 'Brandon',
+            'company-name': 'Brandon Company',
+            'attention-name': 'Brandon',
+            'phone': '8598015522',
+            'address': '3041 Fayburrow Drive',
+            'city': 'Reynoldsburg',
+            'state': 'OH',
+            'postal-code': '43068',
+            'country-code': 'US',
+            }
 
 
 def create_ship_confirm_request(scr, shipper, shipto, shipfrom):
@@ -57,4 +99,11 @@ def create_ship_confirm_request(scr, shipper, shipto, shipfrom):
     doc.xpath('.//ShipFrom/Address/CountryCode')[0].text = shipfrom['country-code']
 
     doc.xpath('.//PaymentInformation/Prepaid/BillShipper/AccountNumber')[0].text = shipper['shipper-number']
+    return etree.tostring(doc)
+
+
+def create_ship_accept_request(sar, scr):
+    doc = etree.fromstring(sar)
+    r_doc = etree.fromstring(scr)
+    doc.xpath('.//ShipmentDigest')[0].text = r_doc.xpath('.//ShipmentDigest')[0].text
     return etree.tostring(doc)

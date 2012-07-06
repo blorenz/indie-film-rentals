@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -93,7 +94,7 @@ SHOP_STRIPE_PUBLISHABLE_KEY='pk_K7n9762QPpE5iWlvGc7teYC4pLrYF'
 SHOP_STRIPE_PRIVATE_KEY='yEANFzTxiht22dfQgSgSijMG14N5PHvh'
 
 SHOP_PAYMENT_BACKENDS = [
-    'shop_stripe.offsite_stripe.StripeBackend',
+    #'shop_stripe.offsite_stripe.StripeBackend',
 ]
 
 SHOP_SHIPPING_BACKENDS = [
@@ -177,6 +178,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'commonware.middleware.FrameOptionsHeader',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 

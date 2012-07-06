@@ -11,10 +11,19 @@
 		{% for product in products %}
 			<div class="box-product">
 				<div>
-					<div class="image clear-both"><a href="#{{product_link}}"><img src="{{product_image}}" alt="iMac" />{{product.name}}</a></div>
-					<div class="name clear-both"><a href="#{{product_link}}">{{product_name}}</a></div>
-					<div class="price">{{product_price}}</div>
-				<div class="cart"><a onclick="addToCart({{product_id}});" class="button"><span>Add to Cart</span></a></div>
+                    <div class="image clear-both">
+                        <a href="#{{product_link}}">
+                            <img src="{{product_image}}" alt="" />
+                            {{product.name}}
+                       </a>
+                    </div>
+		    		<div class="name clear-both"><a href="#{{product_link}}">{{product_name}}</a></div>
+			    	<div class="price">{{product_price}}</div>
+                    <div class="cart">
+                    <a onclick="addToCart({{product_id}});" class="button">
+                        <span>Add to Cart</span>
+                    </a>
+                </div>
 			</div>
 		{% endfor %}
 		</div>

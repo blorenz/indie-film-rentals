@@ -10,24 +10,3 @@ def home(request):
     return render_to_response('base/home.html',
         context_instance=RequestContext(request))
 
-def brand(request):
-    """ Default view for the root """
-    return render_to_response('base/home.html',
-        context_instance=RequestContext(request))
-
-def category(request, category):
-    categoryObj = Category.objects.filter(name=category)
-    products = BaseIndieRentalProduct.objects.filter(categories__in=categoryObj)
-
-    return render_to_response('base/category.html',
-            {'category': categoryObj, 'products': products,},
-            context_instance=RequestContext(request))
-
-
-def product(request, brand, slug, category):
-    """ Default view for the nat """
-    cameras = Camera.objects.all()
-    return render_to_response('base/nat.html',
-        {'cameras':cameras,
-        'name':'Cameras',},
-        context_instance=RequestContext(request))

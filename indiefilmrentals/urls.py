@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
     (r'^shop/', include(shop_urls)), # <-- That's the important bit
+    (r'^rent/', include('indiefilmrentals.products.urls')),
     (r'', include('indiefilmrentals.base.urls')),
 )
 

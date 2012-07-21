@@ -74,6 +74,13 @@ class BaseIndieRentalProduct(Product):
     class Meta:
         pass
 
+    @models.permalink
+    def get_absolute_url(self):
+            return ('indiefilmrentals.products.views.product', (), {
+                                        'brand': unicode(self.brand).lower(),
+                                        'category': unicode(self.categories.all()[0]).lower() if len(self.categories.all()) else 'none',
+                                        'slug': self.slug})
+
     def save(self, force_insert=False, force_update=False):
         self.description_html = markdown(self.description)
         super(BaseIndieRentalProduct, self).save(force_insert, force_update)

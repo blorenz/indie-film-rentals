@@ -47,8 +47,7 @@ body { padding-top: 0px !important; padding-bottom: 0px !important; background-c
 .top-elements {	float: right; text-align: right; margin-bottom: 5px; width: 100%; }
 #currency-wrapper,
 #language {	color: #999; float: left; margin-right: 15px; }
-#logo {	height:57px; width: 290px; background: url(/static/img/logo.jpg) no-repeat 0px 6px; cursor: pointer; } 
-#logo img {	display:none; }
+#logo a { height:57px; width: 290px; background: url(/static/img/logo.jpg) no-repeat 0px 6px; text-indent:-55555px; display:block; } 
 #welcome-message {	font-size: 11px; color: #999999; margin-bottom: 5px; clear: both; }
 #welcome-message a { color: #dc0053;  }
  
@@ -250,12 +249,19 @@ table.list .center {	text-align: center; padding: 7px; }
 
 /********** MODULES ***************/
 .box {	margin-bottom: 20px; }
-.box .box-heading {	border-bottom: 5px solid #EEEEEE; padding-top: 5px; padding-bottom: 8px; font-family: Open Sans, sans-serif; font-size: 18px; color: #dc0053; margin-bottom: 4px;}
+.box .box-heading {	border-bottom: 5px solid #EEEEEE; padding-top: 5px; padding-bottom: 8px; font-family: 'Open Sans', sans-serif; font-size: 18px; color: #dc0053; margin-bottom: 4px;}
 .box-product {	width: 100%; overflow: hidden; }
-.mod-horiz .box-product > div { display: inline-block;  margin: 10px; border: none;}
+.mod-horiz .box-product > div { display: inline-block;  margin: 10px; border: none;
+	width: 135px;
+	float: left; /* nbh desktop */  }
 .mod-horiz .box-product > div:hover { border: 1px solid #EEEEEE; -webkit-box-shadow: 0px 0px 20px #CCCCCC; -moz-box-shadow: 0px 0px 20px #CCCCCC; box-shadow: 0px 0px 20px #CCCCCC; margin: 9px;}
 .box-product > div { border-bottom: 1px solid #DDDDDD; padding: 10px; }
-.box-product .image {	display: block; margin-bottom: 0px; float: left; margin-right: 5px; }
+.box-product .image {	display: block; margin-bottom: 0px; float: left;
+	width: 100%;
+}
+.box-product .image img {
+	width: 100%;
+}
 .box-product .name a {	font-weight: bold; text-decoration: none; display: block; line-height: 15px; color: #dc0053; }
 .box-product .price {	display: block; font-size: 11px; color: #333333; margin-bottom: 4px; }
 .box-product .price-old {	color: #dc0053; text-decoration: line-through; }
@@ -277,12 +283,12 @@ table.list .center {	text-align: center; padding: 7px; }
 .box-product	button,
 .box-product	input[type="submit"],
 .box-product	input[type="reset"],
-.box-product	input[type="button"] { background: #ffffff; /* Old browsers */ background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */ background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#ffffff, endColorstr=#e5e5e5,GradientType=0 ); /* IE6-9 */ border: 1px solid #EEEEEE; padding: 4px 12px;  -moz-border-radius: 3px;   -webkit-border-radius: 3px; border-radius: 3px;  color: #dc0053;  display: inline-block;  font-size: 11px;  font-weight: bold;  text-decoration: none; cursor: pointer; margin-bottom: 20px;  line-height: 21px; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.box-product	input[type="button"] { background: #ffffff; /* Old browsers */ background: -moz-linear-gradient(top,  #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* IE10+ */ background: linear-gradient(top,  #ffffff 0%,#e5e5e5 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */ border: 1px solid #EEEEEE; padding: 4px 12px;  -moz-border-radius: 3px;   -webkit-border-radius: 3px; border-radius: 3px;  color: #dc0053;  display: inline-block;  font-size: 11px;  font-weight: bold;  text-decoration: none; cursor: pointer; margin-bottom: 20px;  line-height: 21px; font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .box-product a.button:hover,
 .box-product button:hover,
 .box-product input[type="submit"]:hover,
 .box-product input[type="reset"]:hover,
-.box-product input[type="button"]:hover { background: #eeeeee; /* Old browsers */ background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */ background: linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#eeeeee, endColorstr=#cccccc,GradientType=0 ); /* IE6-9 */ }
+.box-product input[type="button"]:hover { background: #eeeeee; /* Old browsers */ background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */ background: linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */ }
 
 /**************** MESSAGES ***************/
 .success, .warning, .attention, .information { color: #FFFFFF; padding: 15px 15px 15px 35px; -webkit-box-shadow: 0px 0px 20px #CCCCCC; -moz-box-shadow: 0px 0px 20px #CCCCCC; box-shadow: 0px 0px 20px #CCCCCC;  font-size:  11px;  line-height: 15px;  margin-bottom: 20px;}

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load mathtags %}
+
 {% block page_class %}product-page{% endblock %}
 {% block content %}
 <div class="sixteen columns category-head row">
@@ -23,9 +25,13 @@
       </div>
       <!-- PRODUCT INFORMATION -->
       <div class="four columns omega">
-         <a id="button-cart" class="button"><span>Rent Now</span></a>
+          <form action="{% url cart_item_add %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="add_item_id" value="{{ product.id }}" />
+              <a id="button-cart" class="button" onclick="$(this).parent().submit();return false;"><span>Rent Now</span></a>
+        </form>
          <p>
-			<span>${{price}} for 4 days</span>
+			<span>${{product.get_price|mult:"4"}} for 4 days</span>
 			<br /><span>4-29 day rental</span>
             <br /><span>+$29 shipping</span>
          </p>
@@ -40,12 +46,13 @@
 			{% endautoescape %}
 		{% endif %}
 		
-        {% if product.links %}
+        {% if product.links.all.count > 0 %}
 			<h3>Links</h3>
 			<ul>
-				<li><a href="#">Link</a></li>
+                {% for link in product.links.all %}
+                <li><a href="{{ link.url }}">{{link.anchor}}</a></li>
+                {% endfor %}
 			</ul>
-			 {{ product.links }}
 		{% endif %}
          
 		<div class="x6 l rr pricing vp">
@@ -94,12 +101,15 @@
                  
 					<div>
 						<div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
-						<div class="name clear-both"><a href="#">product.name</a></div>
-						<div class="price">product.price?</div>
+                        <div class="name clear-both"><a href="#">{{product.name}}</a></div>
+                        <div class="price">${{product.get_price}}</div>
 						<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
 					</div>
-					 {{ product.crossSell }}
-                 
+                    <ul>
+                    {% for xsell in product.crossSell.all %}
+                        <li><a href="{{ xsell.get_absolute_url}}">{{ xsell }}</a>
+                    {% endfor %}
+                    </ul> 
                </div>
             </div>
          </div>

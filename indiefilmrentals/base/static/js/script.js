@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	/* Search */
 	$('.button-search').bind('click', function() {

@@ -2,7 +2,7 @@
 <div class="sixteen columns">
 	<!-- LOGO ================================================== -->
 	<div class="one-third column alpha">
-		<div id="logo"><a href="#"><img src="/static/img/logo.jpg" title="Indie Film Rentals" alt="Indie Film Rentals"></a></div>
+		<div id="logo"><a href="/">Indie Film Rentals</a></div>
 	</div>
 	<div class="two-thirds column omega">
 		<div class="top-elements no-mobile"></div>
@@ -28,11 +28,9 @@
 		<div class="twelve columns alpha">
 			<div id="menu">
 				<ul>
-					<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=20">Sony</a></li>
-					<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=18">Cameras</a></li>
-					<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=17">Lighting</a></li>
-					<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=33">Accessories</a></li>
-					<li><a href="http://wedevu.com/products/responsive/index.php?route=product/category&amp;path=34">Lenses</a>
+                    {% for category in categories %}
+                    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                    {% endfor %}
 					</li>
 				</ul>
 			</div>

@@ -1,5 +1,5 @@
 from django.db import models
-
+from shop_simplecategories.models import *
 
 class Link(models.Model):
     anchor = models.CharField(max_length=200)

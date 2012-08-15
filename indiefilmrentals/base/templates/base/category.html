@@ -12,7 +12,7 @@
 					{% for product in products %}
 						<div>
 		                    <div class="image clear-both"><a href="{{product.get_absolute_url}}">
-		                  		<img src="/static/img/fpo-80x80.jpg" alt="{{product.image}}" /></a>
+		                  		<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}" /></a>
 		                    </div>
 							<div class="name clear-both">
 								<a href="{{product.get_absolute_url}}">{{product.name}}</a>

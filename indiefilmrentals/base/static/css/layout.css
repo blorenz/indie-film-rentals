@@ -253,11 +253,13 @@ table.list .center {	text-align: center; padding: 7px; }
 .box-product {	width: 100%; overflow: hidden; }
 .mod-horiz .box-product > div { display: inline-block;  margin: 10px; border: none;
 	width: 135px;
-	float: left; /* nbh desktop */  }
+	float: left;
+	height: 175px; /* nbh desktop */  }
 .mod-horiz .box-product > div:hover { border: 1px solid #EEEEEE; -webkit-box-shadow: 0px 0px 20px #CCCCCC; -moz-box-shadow: 0px 0px 20px #CCCCCC; box-shadow: 0px 0px 20px #CCCCCC; margin: 9px;}
 .box-product > div { border-bottom: 1px solid #DDDDDD; padding: 10px; }
-.box-product .image {	display: block; margin-bottom: 0px; float: left;
+.box-product .image { display: block; margin-bottom: 0px; float: left;
 	width: 100%;
+	min-height: 143px;
 }
 .box-product .image img {
 	width: 100%;

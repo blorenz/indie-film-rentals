@@ -5,7 +5,7 @@
 {% block page_class %}product-page{% endblock %}
 {% block content %}
 <div class="sixteen columns category-head row">
-	<h1>{{product.name}}</h1>
+	<h1>{{ product.name }}</h1>
 	<div class="breadcrumb">
 		<a href="http://wedevu.com/products/responsive/index.php?route=common/home">Home</a>
 		» <a href="http://wedevu.com/products/responsive/index.php?route=product/product&amp;product_id=40">Lenses</a>
@@ -18,10 +18,22 @@
       </div>
       <!-- PRODUCT IMAGES -->
       <div class="eight columns alpha">
-         <div class="image"><a href="#" title="" rel=""><img src="/static/img/fpo.jpg" title="" alt="" id="image" /></a></div>
+         <div class="image">
+			{% if product.get_product_image %}
+				<img src="{{ product.get_product_image.image.url }}" title="{{ product.get_product_image.description|striptags }}" />
+			{% else %}
+				<img src="/static/img/fpo-80x80.jpg" />
+			{% endif  %}
+		 </div>
+		 {% if product.productimage_set.all|length > 1 %}
          <div class="image-additional no-mobile">
-            <a href="#" title="" class="fancybox"><img src="/static/img/fpo-80x80.jpg" title="" alt="" /></a>
+			{% for subimage in product.productimage_set.all %}
+            <a href="#" title="" class="fancybox">
+				<img src="{{ subimage.image.url }}" title="{{ subimage.description|striptags }}" />
+			</a>
+			{% endfor  %}
          </div>
+		 {% endif %}
       </div>
       <!-- PRODUCT INFORMATION -->
       <div class="four columns omega">
@@ -93,27 +105,28 @@
    </div>
    <!-- RIGHT COLUMN ================================================== --> 
    <div class="four columns omega no-mobile">
-      <div style="padding-left: 10px;">
-         <div class="box">
-            <div class="box-heading">Related</div>
-            <div class="box-content">
-               <div class="box-product">
-                 
-					<div>
-						<div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
-                        <div class="name clear-both"><a href="#">{{product.name}}</a></div>
-                        <div class="price">${{product.get_price}}</div>
-						<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
+	{% if product.crossSell.all %}
+		<div style="padding-left: 10px;">
+			<div class="box">
+				<div class="box-heading">Related</div>
+				<div class="box-content">
+					<div class="box-product">
+						<div>
+							<div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
+							<div class="name clear-both"><a href="#">{{product.name}}</a></div>
+							<div class="price">${{product.get_price}}</div>
+							<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
+						</div>
+						<ul>
+							{% for xsell in product.crossSell.all %}
+								<li><a href="{{ xsell.get_absolute_url}}">{{ xsell }}</a></li>
+							{% endfor %}
+						</ul> 
 					</div>
-                    <ul>
-                    {% for xsell in product.crossSell.all %}
-                        <li><a href="{{ xsell.get_absolute_url}}">{{ xsell }}</a>
-                    {% endfor %}
-                    </ul> 
-               </div>
-            </div>
-         </div>
-      </div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
    </div>
 </div>
 {% endblock %}

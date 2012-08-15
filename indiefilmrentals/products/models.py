@@ -33,6 +33,9 @@ class Price_Tier_Package(models.Model):
 class Brand(models.Model):
     name = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ['name',]
+
     def __unicode__(self):
         return self.name
 
@@ -60,6 +63,8 @@ class BaseIndieRentalProduct(Product):
 
     brand = models.ForeignKey(Brand)
 
+    quantity = models.IntegerField(default=0)
+
     description = models.TextField()
     description_html = models.TextField(null=True, blank=True, editable=False)
 
@@ -71,8 +76,16 @@ class BaseIndieRentalProduct(Product):
 
     links = models.ManyToManyField(Link, help_text="Links to include with this product.", null=True, blank=True)
 
+
+    def get_product_image(self):
+        try:
+            return self.productimage_set.all()[0]
+        except:
+            return None
+
+
     class Meta:
-        pass
+        ordering = ['name',]
 
     @models.permalink
     def get_absolute_url(self):
@@ -99,6 +112,25 @@ class Camera(BaseIndieRentalProduct):
 class Lighting(BaseIndieRentalProduct):
     class Meta:
         pass
+
+class Audio(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class Monitor(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class Support(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class Accessory(BaseIndieRentalProduct):
+    class Meta:
+        verbose_name_plural = "Accessories"
 
 
 class ProductImage(models.Model):

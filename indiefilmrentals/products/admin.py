@@ -10,6 +10,7 @@ class ProductTierAdmin(admin.ModelAdmin):
 class ProductForm(ProductWithCategoryForm):
         class Meta(object):
                     model = BaseIndieRentalProduct
+                    ordering = ['name',]
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -30,6 +31,10 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Lens, ProductAdmin)
 admin.site.register(Lighting, ProductAdmin)
 admin.site.register(Camera, ProductAdmin)
+admin.site.register(Monitor, ProductAdmin)
+admin.site.register(Accessory, ProductAdmin)
+admin.site.register(Audio, ProductAdmin)
+admin.site.register(Support, ProductAdmin)
 admin.site.register(Price_Tier)
 admin.site.register(Price_Tier_Package, ProductTierAdmin)
 admin.site.register(Brand)

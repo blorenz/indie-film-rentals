@@ -12,7 +12,7 @@ def brand(request):
 
 def category(request, slug):
     categoryObj = get_object_or_404(Category,name__iexact=slug)
-    products = BaseIndieRentalProduct.objects.filter(categories=categoryObj)
+    products = BaseIndieRentalProduct.objects.filter(categories=categoryObj, status=BaseIndieRentalProduct.LIVE_STATUS)
 
     return render_to_response('base/category.html',
             {
@@ -25,7 +25,7 @@ def category(request, slug):
 def product(request, brand, slug, category):
     """ Default view for the nat """
     print 'here'
-    productObj = get_object_or_404(BaseIndieRentalProduct,slug=slug)
+    productObj = get_object_or_404(BaseIndieRentalProduct,slug=slug, status=BaseIndieRentalProduct.LIVE_STATUS)
     c = RequestContext(request)
     #c.update(csrf(c))
     return render_to_response('base/product.html',

@@ -84,6 +84,41 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal('products', ['Lighting'])
 
+        # Adding model 'Audio'
+        db.create_table('products_audio', (
+            ('baseindierentalproduct_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.BaseIndieRentalProduct'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal('products', ['Audio'])
+
+        # Adding model 'Monitor'
+        db.create_table('products_monitor', (
+            ('baseindierentalproduct_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.BaseIndieRentalProduct'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal('products', ['Monitor'])
+
+        # Adding model 'Support'
+        db.create_table('products_support', (
+            ('baseindierentalproduct_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.BaseIndieRentalProduct'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal('products', ['Support'])
+
+        # Adding model 'Accessory'
+        db.create_table('products_accessory', (
+            ('baseindierentalproduct_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['products.BaseIndieRentalProduct'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal('products', ['Accessory'])
+
+        # Adding model 'ProductImage'
+        db.create_table('products_productimage', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
+            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
+            ('product', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['products.BaseIndieRentalProduct'])),
+        ))
+        db.send_create_signal('products', ['ProductImage'])
+
+
     def backwards(self, orm):
         # Deleting model 'Price_Tier'
         db.delete_table('products_price_tier')
@@ -115,6 +150,22 @@ class Migration(SchemaMigration):
         # Deleting model 'Lighting'
         db.delete_table('products_lighting')
 
+        # Deleting model 'Audio'
+        db.delete_table('products_audio')
+
+        # Deleting model 'Monitor'
+        db.delete_table('products_monitor')
+
+        # Deleting model 'Support'
+        db.delete_table('products_support')
+
+        # Deleting model 'Accessory'
+        db.delete_table('products_accessory')
+
+        # Deleting model 'ProductImage'
+        db.delete_table('products_productimage')
+
+
     models = {
         'base.link': {
             'Meta': {'object_name': 'Link'},
@@ -129,8 +180,16 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        'products.accessory': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Accessory', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
+        },
+        'products.audio': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Audio', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
+        },
         'products.baseindierentalproduct': {
-            'Meta': {'object_name': 'BaseIndieRentalProduct', '_ormbases': ['shop.Product']},
+            'Meta': {'ordering': "['name']", 'object_name': 'BaseIndieRentalProduct', '_ormbases': ['shop.Product']},
             'brand': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['products.Brand']"}),
             'crossSell': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'crossSell_rel_+'", 'null': 'True', 'to': "orm['products.BaseIndieRentalProduct']"}),
             'description': ('django.db.models.fields.TextField', [], {}),
@@ -141,20 +200,24 @@ class Migration(SchemaMigration):
             'status': ('django.db.models.fields.IntegerField', [], {'default': '2'})
         },
         'products.brand': {
-            'Meta': {'object_name': 'Brand'},
+            'Meta': {'ordering': "['name']", 'object_name': 'Brand'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'products.camera': {
-            'Meta': {'object_name': 'Camera', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'Meta': {'ordering': "['name']", 'object_name': 'Camera', '_ormbases': ['products.BaseIndieRentalProduct']},
             'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
         },
         'products.lens': {
-            'Meta': {'object_name': 'Lens', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'Meta': {'ordering': "['name']", 'object_name': 'Lens', '_ormbases': ['products.BaseIndieRentalProduct']},
             'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
         },
         'products.lighting': {
-            'Meta': {'object_name': 'Lighting', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'Meta': {'ordering': "['name']", 'object_name': 'Lighting', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
+        },
+        'products.monitor': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Monitor', '_ormbases': ['products.BaseIndieRentalProduct']},
             'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
         },
         'products.price_tier': {
@@ -170,6 +233,18 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'tier': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['products.Price_Tier']", 'symmetrical': 'False'})
         },
+        'products.productimage': {
+            'Meta': {'object_name': 'ProductImage'},
+            'description': ('django.db.models.fields.TextField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['products.BaseIndieRentalProduct']"})
+        },
+        'products.support': {
+            'Meta': {'ordering': "['name']", 'object_name': 'Support', '_ormbases': ['products.BaseIndieRentalProduct']},
+            'baseindierentalproduct_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['products.BaseIndieRentalProduct']", 'unique': 'True', 'primary_key': 'True'})
+        },
         'shop.product': {
             'Meta': {'object_name': 'Product'},
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -179,7 +254,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'polymorphic_ctype': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'polymorphic_shop.product_set'", 'null': 'True', 'to': "orm['contenttypes.ContentType']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
-            'unit_price': ('django.db.models.fields.DecimalField', [], {'default': "'0.00'", 'max_digits': '12', 'decimal_places': '2'})
+            'unit_price': ('django.db.models.fields.DecimalField', [], {'default': "'0.0'", 'max_digits': '30', 'decimal_places': '2'})
         }
     }
 

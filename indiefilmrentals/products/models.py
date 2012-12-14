@@ -148,6 +148,66 @@ class Accessory(BaseIndieRentalProduct):
         verbose_name_plural = "Accessories"
 
 
+class BatteryAndPower(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class DigitalRecorderMediaVTR(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class EditAndTransferSystem(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class Grip(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class MatteBoxFollowFocusFilter(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class MultiCameraSwitcherPackage(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class OtherService(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class TapeStock(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class Teleprompter(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class TimecodeAndSignalConversion(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class TripodDollySupportRig(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
+class VideoProjection(BaseIndieRentalProduct):
+    class Meta:
+        pass
+
+
 class ProductImage(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True,blank=True)

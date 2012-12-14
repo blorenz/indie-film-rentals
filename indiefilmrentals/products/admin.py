@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
     radio_fields = {"price_tier": admin.VERTICAL}
     form = ProductForm
 
-    inlines = [ ProductImageInline, ]
+    #inlines = [ ProductImageInline, ]
 
     class Media:
         js = ("js/tinymce/jscripts/tiny_mce/tiny_mce.js", "js/tiny.js", )

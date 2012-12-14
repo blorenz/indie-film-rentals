@@ -18,6 +18,7 @@ class ProductImageInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
+    list_display = ['name','ohd_category','ohd_subcategory','categories',]
     filter_horizontal = ['crossSell', 'links']
     radio_fields = {"price_tier": admin.VERTICAL}
     form = ProductForm

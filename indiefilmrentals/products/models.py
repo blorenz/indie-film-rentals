@@ -97,7 +97,7 @@ class BaseIndieRentalProduct(Product):
 
     def get_product_image(self):
         try:
-            return self.productimage_set.all()[0]
+            return self.image
         except:
             return None
 

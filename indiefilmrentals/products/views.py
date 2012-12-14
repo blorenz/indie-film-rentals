@@ -11,7 +11,7 @@ def brand(request):
         context_instance=RequestContext(request))
 
 def category(request, slug):
-    categoryObj = get_object_or_404(Category,name__iexact=slug)
+    categoryObj = get_object_or_404(Category,slug__iexact=slug)
     products = BaseIndieRentalProduct.objects.filter(categories=categoryObj, status=BaseIndieRentalProduct.LIVE_STATUS)
 
     return render_to_response('base/category.html',

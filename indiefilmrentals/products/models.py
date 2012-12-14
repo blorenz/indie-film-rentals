@@ -91,6 +91,9 @@ class BaseIndieRentalProduct(Product):
 
     image = models.ForeignKey(ProductImage, null=True, blank=True)
 
+    ohd_category = models.CharField(max_length=100, null=True, blank=True)
+    ohd_subcategory = models.CharField(max_length=100, null=True, blank=True)
+
 
     def get_product_image(self):
         try:

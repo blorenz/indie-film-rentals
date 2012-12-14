@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'shop_paypal',
     'shop_stripe',
     'userprofile',
+    'csvimport',
 ]
 
 AUTH_PROFILE_MODULE = "userprofile.userprofile"

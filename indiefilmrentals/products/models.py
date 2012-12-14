@@ -7,6 +7,16 @@ from datetime import datetime
 import md5
 
 
+def my_upload_to(instance, filename):
+    prefix = 'products'
+
+    # Get name from FKed model
+#    name = instance.product.name
+
+    #filename = md5.new(str(datetime.now())).hexdigest() + '-' + filename
+    return "%s/%s" % (prefix, filename)
+
+
 class Price_Tier(models.Model):
     start_day = models.IntegerField(help_text="Lower limit of price tier's range")
     end_day = models.IntegerField(help_text="Upper limit of price tier's range")
@@ -30,6 +40,15 @@ class Price_Tier_Package(models.Model):
         verbose_name = "Price Tier Package"
 
 
+class ProductImage(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True,blank=True)
+    image = models.ImageField(upload_to=my_upload_to)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Brand(models.Model):
     name = models.CharField(max_length=100)
 
@@ -38,17 +57,6 @@ class Brand(models.Model):
 
     def __unicode__(self):
         return self.name
-
-
-def my_upload_to(instance, filename):
-    prefix = 'products'
-
-    # Get name from FKed model
-#    name = instance.product.name
-
-    filename = md5.new(str(datetime.now())).hexdigest() + '-' + filename
-    return "%s/%s" % (prefix, filename)
-
 
 
 class BaseIndieRentalProduct(Product):
@@ -61,20 +69,27 @@ class BaseIndieRentalProduct(Product):
                       (OHD_ONLY_STATUS, 'OHD Only'),
                       )
 
-    brand = models.ForeignKey(Brand)
+    brand = models.ForeignKey(Brand, null=True, blank=True)
 
     quantity = models.IntegerField(default=0)
 
-    description = models.TextField()
+    short_description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     description_html = models.TextField(null=True, blank=True, editable=False)
 
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT_STATUS, help_text="Only 'Live' status will be publicly displayed.")
 
     crossSell = models.ManyToManyField('self', null=True, help_text="Products to be cross-sold with this product.", blank=True)
 
-    price_tier = models.ForeignKey(Price_Tier_Package, help_text="The price tier package for this product.")
+    price_tier = models.ForeignKey(Price_Tier_Package, help_text="The price tier package for this product.", null=True, blank=True)
 
     links = models.ManyToManyField(Link, help_text="Links to include with this product.", null=True, blank=True)
+
+    ohd_daily = models.CharField(max_length=100,null=True,blank=True)
+    ohd_weekly = models.CharField(max_length=100,null=True,blank=True)
+    ohd_monthly = models.CharField(max_length=100,null=True,blank=True)
+
+    image = models.ForeignKey(ProductImage, null=True, blank=True)
 
 
     def get_product_image(self):
@@ -135,7 +150,6 @@ class Accessory(BaseIndieRentalProduct):
 
 class ProductImage(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(null=True,blank=True)
     image = models.ImageField(upload_to=my_upload_to)
-    product = models.ForeignKey(BaseIndieRentalProduct)
 

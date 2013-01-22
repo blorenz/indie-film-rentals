@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     (r'^bad/$', bad),
     (r'^shop/', include(shop_urls)), # <-- That's the important bit
     (r'^rent/', include('indiefilmrentals.products.urls')),
+	(r'^pages/', include('django.contrib.flatpages.urls')),
+    (r'^search/', include('haystack.urls')),
     (r'', include('indiefilmrentals.base.urls')),
 )
 

@@ -2,40 +2,100 @@
 
 {% load mathtags %}
 
-{% block page_class %}product-page{% endblock %}
+{% block page_title %}{{ product.name }}{% endblock %}
+{% block class %}product-item{% endblock %}
+
 {% block content %}
-<div class="sixteen columns category-head row">
-	<h1>{{ product.name }}</h1>
-	<div class="breadcrumb">
-		<a href="http://wedevu.com/products/responsive/index.php?route=common/home">Home</a>
-		» <a href="http://wedevu.com/products/responsive/index.php?route=product/product&amp;product_id=40">Lenses</a>
-	</div>
+<div id="main-content">
+    <div class="container clearfix">
+	
+        <div class="twelve columns products alpha equal">
+            <div id="breadcrumbs" class="row">
+                <a href="#">Gear Rental</a><span class="seperator">/</span><a href="{{ category_link }}">{{ product.ohd_category }}</a><span class="seperator">/</span>{{ product.name }}
+            </div>
+            <h1>{{ product.name }}</h1>
+            <div class="row">
+                <div id="imgs-wrap" class="seven columns clearfix alpha">
+                    {% if product.get_product_image %}
+                        <img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description|striptags }}" />
+                    {% else %}
+                        <img src="/static/img/fpo-80x80.jpg" width="400" height="286" />
+                    {% endif  %}
+                </div>
+                <div class="pricing">
+                    <h5>Prices</h5>
+                    <ul>
+                        <li><span class="duration">Day:</span> ${{product.ohd_daily}}</li>
+                        <li><span class="duration">Week:</span> ${{product.ohd_weekly}}</li>
+                        <li><span class="duration">Month:</span> ${{product.ohd_monthly}}</li>
+                    </ul>
+                    <a href="/contact/" class="button">Inquire about this gear</a>
+                </div>
+            </div>
+    
+            <div class="row description">
+                {% if product.description %}
+                    <h3>Description</h3>
+                    {% autoescape off %}
+                        {{product.description}}
+                    {% endautoescape %}
+                {% endif %}
+            </div>
+        </div><!-- End products -->
+    
+        <div class="four columns omega sidebar equal" style="height: 834px; overflow: visible;">
+            <h3>Product Categories</h3>
+            <ul id="gear-nav">
+                {% for category in categories %}
+                    {% if not category.parent_category %}
+                        <li>
+                            <a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div><!-- End Product Sidebar -->
+        
+    </div><!-- End Container -->
+</div><!-- End Main-Content -->
+
+
+
+
+
+
+<!--div class="sixteen columns category-head row">
+    <h1>{{ product.name }}</h1>
+    <div class="breadcrumb">
+        <a href="http://wedevu.com/products/responsive/index.php?route=common/home">Home</a>
+        » <a href="http://wedevu.com/products/responsive/index.php?route=product/product&amp;product_id=40">Lenses</a>
+    </div>
 </div>
 <div class="sixteen columns clearfix">
-   <!-- MAIN WRAPPER -->
+
    <div class="twelve columns alpha omega product-info">
       <div class="mod-horiz">
       </div>
-      <!-- PRODUCT IMAGES -->
+
       <div class="eight columns alpha">
          <div class="image">
-			{% if product.get_product_image %}
-				<img src="{{ product.get_product_image.image.url }}" title="{{ product.get_product_image.description|striptags }}" />
-			{% else %}
-				<img src="/static/img/fpo-80x80.jpg" />
-			{% endif  %}
-		 </div>
-		 {% if product.productimage_set.all|length > 1 %}
-         <div class="image-additional no-mobile">
-			{% for subimage in product.productimage_set.all %}
-            <a href="#" title="" class="fancybox">
-				<img src="{{ subimage.image.url }}" title="{{ subimage.description|striptags }}" />
-			</a>
-			{% endfor  %}
+            {% if product.get_product_image %}
+                <img src="{{ product.get_product_image.image.url }}" title="{{ product.get_product_image.description|striptags }}" />
+            {% else %}
+                <img src="/static/img/fpo-80x80.jpg" />
+            {% endif  %}
          </div>
-		 {% endif %}
+         {% if product.productimage_set.all|length > 1 %}
+         <div class="image-additional no-mobile">
+            {% for subimage in product.productimage_set.all %}
+            <a href="#" title="" class="fancybox">
+                <img src="{{ subimage.image.url }}" title="{{ subimage.description|striptags }}" />
+            </a>
+            {% endfor  %}
+         </div>
+         {% endif %}
       </div>
-      <!-- PRODUCT INFORMATION -->
+
       <div class="four columns omega">
           <form action="{% url cart_item_add %}" method="POST">
               {% csrf_token %}
@@ -43,90 +103,90 @@
               <a id="button-cart" class="button" onclick="$(this).parent().submit();return false;"><span>Rent Now</span></a>
         </form>
          <p>
-			<span>${{product.get_price|mult:"4"}} for 4 days</span>
-			<br /><span>4-29 day rental</span>
+            <span>${{product.get_price|mult:"4"}} for 4 days</span>
+            <br /><span>4-29 day rental</span>
             <br /><span>+$29 shipping</span>
          </p>
       </div>
-      <!-- PRODUCT TABS -->
+
       <div class="ten columns clearfix alpha omega description">
-	
-		{% if product.description %}
-			<h2>Description</h2>
-			{% autoescape off %}
-		        {{product.description}}
-			{% endautoescape %}
-		{% endif %}
-		
+    
+        {% if product.description %}
+            <h2>Description</h2>
+            {% autoescape off %}
+                {{product.description}}
+            {% endautoescape %}
+        {% endif %}
+        
         {% if product.links.all.count > 0 %}
-			<h3>Links</h3>
-			<ul>
+            <h3>Links</h3>
+            <ul>
                 {% for link in product.links.all %}
                 <li><a href="{{ link.url }}">{{link.anchor}}</a></li>
                 {% endfor %}
-			</ul>
-		{% endif %}
+            </ul>
+        {% endif %}
          
-		<div class="x6 l rr pricing vp">
-			<div class="x">
-				<h2>Pricing</h2>
-				<table class="pricing data">
-					<tbody>
-						<tr>
-							<th width="50%">Rental Period</th>
-							<th width="25%" class="r">Price</th>
-							<th width="25%" class="r">Day Rate</th>
-						</tr>
-					</tbody>
-				</table>
-				{{ product.price_tier }}
-				<table class="pricing data">
-					<tbody>
-						<tr>
-							<th width="25%">Rental Period</th>
-							<th width="25%" class="r">Waiver Price</th>
-							<th width="25%" class="r">Total Price</th>
-							<th width="25%" class="r">Day Rate</th>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+        <div class="x6 l rr pricing vp">
+            <div class="x">
+                <h2>Pricing</h2>
+                <table class="pricing data">
+                    <tbody>
+                        <tr>
+                            <th width="50%">Rental Period</th>
+                            <th width="25%" class="r">Price</th>
+                            <th width="25%" class="r">Day Rate</th>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ product.price_tier }}
+                <table class="pricing data">
+                    <tbody>
+                        <tr>
+                            <th width="25%">Rental Period</th>
+                            <th width="25%" class="r">Waiver Price</th>
+                            <th width="25%" class="r">Total Price</th>
+                            <th width="25%" class="r">Day Rate</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-		<div class="x6 l rl shipping vp">
-		   <div class="x">
-		      <h2>Shipping</h2>
-		   </div>
-		</div>
-		
+        <div class="x6 l rl shipping vp">
+           <div class="x">
+              <h2>Shipping</h2>
+           </div>
+        </div>
+        
       </div>
       <div class="mod-horiz">
       </div>
    </div>
-   <!-- RIGHT COLUMN ================================================== --> 
+
    <div class="four columns omega no-mobile">
-	{% if product.crossSell.all %}
-		<div style="padding-left: 10px;">
-			<div class="box">
-				<div class="box-heading">Related</div>
-				<div class="box-content">
-					<div class="box-product">
-						<div>
-							<div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
-							<div class="name clear-both"><a href="#">{{product.name}}</a></div>
-							<div class="price">${{product.get_price}}</div>
-							<div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
-						</div>
-						<ul>
-							{% for xsell in product.crossSell.all %}
-								<li><a href="{{ xsell.get_absolute_url}}">{{ xsell }}</a></li>
-							{% endfor %}
-						</ul> 
-					</div>
-				</div>
-			</div>
-		</div>
-	{% endif %}
+    {% if product.crossSell.all %}
+        <div style="padding-left: 10px;">
+            <div class="box">
+                <div class="box-heading">Related</div>
+                <div class="box-content">
+                    <div class="box-product">
+                        <div>
+                            <div class="image clear-both"><a href="#"><img src="/static/img/fpo-80x80.jpg" alt="alt" /></a></div>
+                            <div class="name clear-both"><a href="#">{{product.name}}</a></div>
+                            <div class="price">${{product.get_price}}</div>
+                            <div class="cart"><a onclick="alert('atb')" class="button"><span>Add to Cart</span></a></div>
+                        </div>
+                        <ul>
+                            {% for xsell in product.crossSell.all %}
+                                <li><a href="{{ xsell.get_absolute_url}}">{{ xsell }}</a></li>
+                            {% endfor %}
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
    </div>
-</div>
+</div-->
 {% endblock %}

@@ -1,6 +1,58 @@
 {% extends "base.html" %}
 
-{% block page_class %}home-page{% endblock %}
+{% block page_title %}Camera Rental, Production Crews, Services{% endblock %}
+{% block class %}homepage{% endblock %}
+
 {% block content %}
-	<h1>Homepage content</h1>
+
+<div id="hero">
+	<div class="container clearfix">
+		<h2>We have the <span class="ltblue">gear</span>, <span class="ltblue">crews</span>, and <span class="ltblue">services</span> to make your next production a <span class="yellow">success.</span></h2>
+		
+		<div class="row">
+			<div class="one-third column feature-block">
+				<a href="crews/" title="Production Crews" class="img crews"></a>
+				<h3><a href="crews/">Production Crews &gt;</a></h3>
+			</div>
+			
+			<div class="one-third column feature-block">
+				<a href="gear/" title="Equipment Rental" class="img gear"></a>
+				<h3><a href="gear/">Equipment Rental &gt;</a></h3>
+			</div>
+			
+			<div class="one-third column feature-block">
+				<a href="services/" title="Production Services" class="img services"></a>
+				<h3><a href="services/">Production Services &gt;</a></h3>
+			</div>			
+		</div>
+	</div>	
+</div>
+
+<div id="main-content">
+	<div class="container clearfix">
+		<h4 class="featured-gear-heading">Featured Gear Rentals</h4>
+		<div class="row featured-gear clearfix">			
+			{% for product in featured %}
+			<div class="two columns product">
+				<a href="{{product.get_absolute_url}}" class="img-block">
+					<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+				</a>
+				<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+			</div>			
+			{% endfor %}
+		</div>
+
+		<div class="two-thirds column alpha">
+			<h1>About <span class="yellow">Ohio HD Video</span></h1>
+			<p>Ohio HD Video has steadily grown through the years to provide producers with top notch ENG &amp; EFP crews in Ohio and the largest camera inventory in the state. We work everyday to deliver dynamic award winning images from Columbus, Cincinnati, Dayton, Cleveland and beyond. Our crews have tackled projects in 49 states and 17 countries.</p>
+			<img src="{{ STATIC_URL }}img/homepage_camera.jpg" class="float-right" alt="HD Camera" height="193" width="270">
+			<p>At the heart of Ohio HD Video is 20 year veteran DP/Cameraman Scott Handel. Scott brings a combination of lighting skills and an eye for framing	detail to a wide range of diverse projects. From Network-level ENG, Magazine Shows, Reality TV, Commercial Production, Corporate Video, Web or Satellite Media Tours, Scott and his crews always deliver the images that keep producers coming back year after year.</p>
+		</div>
+		<div class="one-third column omega sidebar">
+			<a href="gear/" class="browse-gear-module"></a>
+			<img src="{{ STATIC_URL }}img/gear-brands.png" alt="Select gear brands" height="180" width="270">
+		</div><!-- End Sidebar -->
+	</div><!-- End Two-Thirds Column -->
+</div>
+
 {% endblock %}

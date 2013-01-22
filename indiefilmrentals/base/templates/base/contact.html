@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block page_title %}Contact Us{% endblock %}
+{% block class %}contact{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+	<div class="container clearfix">
+		<div class="twelve columns alpha equal">
+			<h1>Contact <span class="yellow">Us</span></h1>
+						
+<h2>{% if email_sent %}
+Your Email has been sent.
+{% endif %}</h2>
+
+			<p>Whether you are interested in gear rentals or production crews and services, there are many ways to reach us. Use the form below to send us a message, or call us at one of the numbers on the right.</p>
+			
+			<div class="row well">
+				<form id="contact" method="post"  class="clearfix" action="/contact/">
+                    {% csrf_token %}
+					<div class="form-col1">
+						<label for="name">Name: *</label>
+						<input name="name" type="text" id="name" required />
+						<label for="email">Email: *</label>
+						<input name="email" type="email" id="email" required  />
+						<label for="email">Phone:</label>
+						<input name="phone" type="text" id="phone" />
+				
+						<fieldset>
+					    	<label>Interested in: *</label>
+
+						    <label for="equipment">
+						      <input name="rental" type="checkbox" id="equipment" value="Equipment Rental" />
+						      <span>Equipment Rental</span>
+						    </label>
+
+						    <label for="crews">
+						      <input name="crews" type="checkbox" id="crews" value="Production Crews" />
+						      <span>Production Crews</span>
+						    </label>
+			
+							<label for="services">
+						      <input name="services" type="checkbox" id="services" value="Production Services" />
+						      <span>Production Services</span>
+						    </label>
+			
+							<label for="other">
+						      <input name="other" type="checkbox" id="services" value="Other" />
+						      <span>Other</span>
+						    </label>
+						</fieldset>
+					</div>
+					
+					<div class="form-col2">
+						<label for="message">Message:</label>
+						<textarea name="message" id="message"></textarea>
+						<small>(*) denotes required field</small>
+						<button type="submit" id="contact-submit">Send Message</button>
+					</div>
+				</form>
+			</div><!-- End Form Row -->
+						
+		</div><!-- End Container -->
+				
+		<div class="four columns omega sidebar equal">
+			<h3>Location</h3>
+			
+			<p><strong>Ohio HD Video @The Backlot</strong><br />
+				3465 Noe Bixby Rd<br />
+				Columbus, Ohio 43232
+			</p>
+				
+			<p>Pickup / Drop-off Gear<br />
+				Open Weekdays 9am - 5pm</p>
+				
+			<p>
+				<span class="label"><strong>Phone:</strong></span> 614-656-1162<br />
+				<span class="label"><strong>Fax:</strong></span> 614-656-4343<br />
+				<span class="label"><strong>Mobile:</strong></span> 614-327-3388<br />
+				<span class="label"><strong>Email:</strong></span> info@ohiohdvideo.com	
+			</p>
+			
+			<p>Located 15 minutes South East of Downtown Columbus. <a href="downloads/OhioHD-directions.pdf">Download directions if you need help finding us.</a></p>
+			
+			<small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Ohio+Hd+Video,+Noe+Bixby+Road,+Columbus,+OH&amp;aq=0&amp;oq=Ohio+HD&amp;sll=39.907498,-82.870903&amp;sspn=0.143661,0.28307&amp;gl=us&amp;ie=UTF8&amp;hq=Ohio+Hd+Video,&amp;hnear=Noe+Bixby+Rd,+Columbus,+Ohio&amp;t=m&amp;cid=14368856923638474090&amp;ll=39.916583,-82.871075&amp;spn=0.059247,0.119991&amp;z=11&amp;iwloc=A">View Larger Map</a></small>
+			<iframe width="200" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border: 1px solid #ccc;" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Ohio+Hd+Video,+Noe+Bixby+Road,+Columbus,+OH&amp;aq=0&amp;oq=Ohio+HD&amp;sll=39.907498,-82.870903&amp;sspn=0.143661,0.28307&amp;gl=us&amp;ie=UTF8&amp;hq=Ohio+Hd+Video,&amp;hnear=Noe+Bixby+Rd,+Columbus,+Ohio&amp;t=m&amp;cid=14368856923638474090&amp;ll=39.916583,-82.871075&amp;spn=0.059247,0.119991&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
+			
+		</div><!-- End Product Sidebar -->
+	</div><!-- End Container -->
+</div><!-- End Main-Content -->
+
+{% endblock %}

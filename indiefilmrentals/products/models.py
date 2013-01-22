@@ -77,6 +77,8 @@ class BaseIndieRentalProduct(Product):
     description = models.TextField(null=True, blank=True)
     description_html = models.TextField(null=True, blank=True, editable=False)
 
+    featured_product = models.BooleanField(default=False)
+
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT_STATUS, help_text="Only 'Live' status will be publicly displayed.")
 
     crossSell = models.ManyToManyField('self', null=True, help_text="Products to be cross-sold with this product.", blank=True)
@@ -100,7 +102,6 @@ class BaseIndieRentalProduct(Product):
             return self.image
         except:
             return None
-
 
     class Meta:
         ordering = ['name',]

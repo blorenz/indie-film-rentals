@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block page_title %}Search{% endblock %}
+{% block class %}gear{% endblock %}
+
+{% block content %}
+
+<!-- sixteen column block for 5 column of product -->
+<div id="main-content">
+	<div class="container clearfix">
+		<div class="products twelve columns alpha">
+			
+			<h1>Search "..."</h1>
+			<div class="sub-category clearfix">				
+				{% if query %}
+		            <h3>Results</h3>
+
+		            {% for product in page.object_list %}
+						<!-- print out subcategory products -->
+						<div class="three columns product">
+							<a href="{{product.get_absolute_url}}" class="img-block">
+								<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+							</a>
+							<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+						</div>							
+						{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+							<hr>
+						{% endif %}
+		
+		            {% empty %}
+		                <p>No results found.</p>
+		            {% endfor %}
+
+		            {% if page.has_previous or page.has_next %}
+		                <div>
+		                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+		                    |
+		                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+		                </div>
+		            {% endif %}
+		        {% else %}
+		            {# Show some example queries to run, maybe query syntax, something else? #}
+		        {% endif %}
+			</div><!-- End Sub Category -->
+			
+		</div><!-- products -->
+		<div class="four columns omega sidebar" style="height: 834px; overflow: visible;">
+			<h3>Product Categories</h3>
+			<ul id="gear-nav">
+				{% for category in categories %}
+					{% if not category.parent_category %}
+						<li>
+							<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
+						</li>
+					{% endif %}
+                {% endfor %}
+			</ul>
+		</div><!-- End Product Sidebar -->
+
+	</div><!-- End Container -->
+</div><!-- End main content -->
+<!-- End category -->
+{% endblock %}

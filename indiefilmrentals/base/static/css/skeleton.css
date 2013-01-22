@@ -1,10 +1,10 @@
 /*
-* Skeleton V1.1
+* Skeleton V1.2
 * Copyright 2011, Dave Gamache
 * www.getskeleton.com
 * Free to use under the MIT license.
 * http://www.opensource.org/licenses/mit-license.php
-* 8/17/2011
+* 6/20/2012
 */
 
 
@@ -21,8 +21,9 @@
 /* #Base 960 Grid
 ================================================== */
 
-    .container                                  { position: relative; width: 960px; margin: 0 auto; padding-left: 20px; padding-right: 20px; background-color: #FFFFFF; }
-    .column, .columns                           { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
+    .container                                  { position: relative; width: 960px; margin: 0 auto; padding: 0; }
+    .container .column,
+    .container .columns                         { float: left; display: inline; margin-left: 10px; margin-right: 10px; }
     .row                                        { margin-bottom: 20px; }
 
     /* Nested Column Classes */
@@ -30,7 +31,8 @@
     .column.omega, .columns.omega               { margin-right: 0; }
 
     /* Base Grid */
-    .container .one.column                      { width: 40px;  }
+    .container .one.column,
+    .container .one.columns                     { width: 40px;  }
     .container .two.columns                     { width: 100px; }
     .container .three.columns                   { width: 160px; }
     .container .four.columns                    { width: 220px; }
@@ -68,11 +70,6 @@
     .container .offset-by-fifteen               { padding-left: 900px; }
 
 
-
-/* media */
-
-
-
 /* #Clearing
 ================================================== */
 
@@ -107,5 +104,3 @@
       width: 0;
       height: 0;
     }
-
-

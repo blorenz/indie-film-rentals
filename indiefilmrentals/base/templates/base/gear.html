@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page_title %}Camera Rental Equipment{% endblock %}
+{% block class %}gear{% endblock %}
+
+{% block content %}
+<!-- Start category -->
+<div id="hero">
+	<div class="container clearfix">
+		<h2>We have Ohio's <span class="ltblue">largest selection</span> of film, HD &amp; cine <span class="yellow">cameras and lenses.</span></h2>
+	</div>	
+</div>
+
+<!-- sixteen column block for 5 column of product -->
+<div id="main-content" class="gear">
+	<div class="container clearfix">
+		
+		<div class="twelve columns products alpha">
+			<h1>Equipment <span class="yellow">Rental</span></h1>
+			<p class="category-description oversized">We have the gear and the technical expertise to make sure your next shoot is a success. Navigate our full inventory using the categories to the right.</p>
+			<div class="sub-category clearfix">
+				
+				<h3>Featured Gear</h3>
+
+				{% for product in featured %}				
+					<div class="three columns product">
+						<a href="{{product.get_absolute_url}}" class="img-block">
+							<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+						</a>
+						<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+					</div>
+					{% if forloop.counter|divisibleby:"4" %}
+					<hr>
+					{% endif %}
+				{% endfor %}
+				
+			</div><!-- End Sub Category -->
+		</div><!-- products -->
+		
+		<div class="four columns omega sidebar" style="height: 834px; overflow: visible;">
+			<h3>Product Categories</h3>
+			<ul id="gear-nav">
+				{% for category in categories %}
+					{% if not category.parent_category %}
+						<li>
+							<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
+						</li>
+					{% endif %}
+                {% endfor %}
+			</ul>
+		</div><!-- End Product Sidebar -->
+
+	</div><!-- End Container -->
+</div><!-- End main content -->
+<!-- End category -->
+{% endblock %}

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
+	'django.contrib.flatpages',
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -64,6 +65,8 @@ INSTALLED_APPS = [
 
     # Database migrations
     'south',
+    'haystack',
+
 
     # Application base, containing global templates.
     'indiefilmrentals.base',
@@ -252,3 +255,11 @@ JINGO_EXCLUDE_APPS = [
 
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'indiefilmrentals.wsgi.application'
+
+import os
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}

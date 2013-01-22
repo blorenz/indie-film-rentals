@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block page_title %}Downloads{% endblock %}
+{% block class %}downloads{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+	<div class="container clearfix">
+		<div class="twelve columns alpha equal" style="height: 551px; overflow: visible;">
+			<h1>Downloads</h1>
+						
+			<p>For your convenience, here you can find commonly requested documents for download. All downloads are in PDF format and require Adobe Reader or equivalent.</p>
+			<a href="http://get.adobe.com/reader/" target="_blank" style="display: block; float: right; margin: 0 0 20px 20px; font-size: 11px;">
+				<img height="39" border="0" width="158" alt="Get Acrobat Reader web logo" src="{{ STATIC_URL }}img/get_adobe_reader.png"><br>
+			  <span class="caption">Get Adobe Reader</span>
+			</a>
+			
+			<h3>2012 Equipment Rental Sheet</h3>
+			<ul class="square">
+				<li><a href="{{ STATIC_URL }}download/OhioHDRentalEquipment.pdf">Ohio HD Equipment Rental Pricing Sheet</a></li>
+			</ul>
+			
+			<h3>Contracts and Business Info</h3>
+			<ul class="square">
+				<li><a href="{{ STATIC_URL }}download/2012_OhioHD_CompleteRentalPacket.pdf">Complete Rental Packet - Contains all of the following documents</a></li>
+				<ul class="circle">
+					<li><a href="{{ STATIC_URL }}download/RentalPacket_2012_Terms.pdf">Rental Packets with Terms and Conditions</a></li>
+					<li><a href="{{ STATIC_URL }}download/2012_OhioHD_W9.pdf">2012 W9 Form</a></li>
+					<li><a href="{{ STATIC_URL }}download/OhioHD-directions.pdf">Directions to the Backlot</a></li>
+				</ul>
+			</ul>
+						
+		</div><!-- End Container -->
+				
+		<div class="four columns omega sidebar equal">
+			<h3>Location</h3>
+			
+			<p><strong>Ohio HD Video @The Backlot</strong><br>
+				3465 Noe Bixby Rd<br>
+				Columbus, Ohio 43232
+			</p>
+				
+			<p>Pickup / Drop-off Gear<br>
+				Open Weekdays 9am - 5pm</p>
+				
+			<p>
+				<span class="label"><strong>Phone:</strong></span> 614-656-1162<br>
+				<span class="label"><strong>Fax:</strong></span> 614-656-4343<br>
+				<span class="label"><strong>Mobile:</strong></span> 614-327-3388<br>
+				<span class="label"><strong>Email:</strong></span> info@ohiohdvideo.com	
+			</p>
+			
+			<p>Located 15 minutes South East of Downtown Columbus. <a href="{{ STATIC_URL }}download/OhioHD-directions.pdf">Download directions if you need help finding us.</a></p>
+			
+			<small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Ohio+Hd+Video,+Noe+Bixby+Road,+Columbus,+OH&amp;aq=0&amp;oq=Ohio+HD&amp;sll=39.907498,-82.870903&amp;sspn=0.143661,0.28307&amp;gl=us&amp;ie=UTF8&amp;hq=Ohio+Hd+Video,&amp;hnear=Noe+Bixby+Rd,+Columbus,+Ohio&amp;t=m&amp;cid=14368856923638474090&amp;ll=39.916583,-82.871075&amp;spn=0.059247,0.119991&amp;z=11&amp;iwloc=A">View Larger Map</a></small>
+			<iframe width="200" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border: 1px solid #ccc;" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Ohio+Hd+Video,+Noe+Bixby+Road,+Columbus,+OH&amp;aq=0&amp;oq=Ohio+HD&amp;sll=39.907498,-82.870903&amp;sspn=0.143661,0.28307&amp;gl=us&amp;ie=UTF8&amp;hq=Ohio+Hd+Video,&amp;hnear=Noe+Bixby+Rd,+Columbus,+Ohio&amp;t=m&amp;cid=14368856923638474090&amp;ll=39.916583,-82.871075&amp;spn=0.059247,0.119991&amp;z=11&amp;iwloc=A&amp;output=embed"></iframe>
+			
+		</div><!-- End Product Sidebar -->
+	</div><!-- End Container -->
+</div>
+
+{% endblock %}

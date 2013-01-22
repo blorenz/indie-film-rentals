@@ -10,18 +10,18 @@
 	<div class="container clearfix">
 		<div class="products twelve columns alpha">
 			
-			<h1>Search "..."</h1>
+			<h1>Search for "{{ query }}"</h1>
 			<div class="sub-category clearfix">				
 				{% if query %}
 		            <h3>Results</h3>
 
-		            {% for product in page.object_list %}
+		            {% for product in page.object_list %}...
 						<!-- print out subcategory products -->
 						<div class="three columns product">
-							<a href="{{product.get_absolute_url}}" class="img-block">
-								<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+							<a href="{{product.object.get_absolute_url}}" class="img-block">
+								<img src="{{ product.object.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
 							</a>
-							<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+							<a href="{{product.get_absolute_url}}">{{product.object.name}}</a>
 						</div>							
 						{% if forloop.counter|divisibleby:"4" and not forloop.last %}
 							<hr>

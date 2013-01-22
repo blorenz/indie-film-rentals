@@ -1,10 +1,11 @@
 """ Default urlconf for indiefilmrentals """
 
 from django.conf import settings
-from django.conf.urls.defaults import include, patterns
+from django.conf.urls.defaults import include, patterns, url
 from session_csrf import anonymous_csrf
 from django.contrib import admin
 from shop import urls as shop_urls # <-- Add this at the top
+from haystack.views import SearchView
 admin.autodiscover()
 
 # django-session-csrf monkeypatcher
@@ -24,8 +25,8 @@ urlpatterns = patterns('',
     (r'^bad/$', bad),
     (r'^shop/', include(shop_urls)), # <-- That's the important bit
     (r'^rent/', include('indiefilmrentals.products.urls')),
-	(r'^pages/', include('django.contrib.flatpages.urls')),
-    (r'^search/', include('haystack.urls')),
+    (r'^pages/', include('django.contrib.flatpages.urls')),
+    url(r'^search/', SearchView(template='base/search.html'), name='haystack_search'),
     (r'', include('indiefilmrentals.base.urls')),
 )
 

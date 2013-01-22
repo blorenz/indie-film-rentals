@@ -58,8 +58,7 @@
 			</ul>
 			
 			<div id="search" class="clearfix">
-				<form method="post" action="/search/">
-					{% csrf_token %}
+				<form method="get" action="/search/">
 					<input type="text" class="searchfield" name="q" maxlength="100" size="40" placeholder="Search..." autocomplete="off" />
 					<button class="searchButton" type="submit"></button>
 				</form>

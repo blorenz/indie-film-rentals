@@ -22,6 +22,7 @@ def category(request, slug):
                 'products': products,
 				'subcategories': subcategories,
 				'gearClass': "current",
+                'all_subs': Category.objects.all().order_by('parent_category').filter(parent_category__isnull=False),
 			},
             context_instance=RequestContext(request))
 

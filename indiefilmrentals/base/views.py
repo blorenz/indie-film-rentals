@@ -15,6 +15,14 @@ def home(request):
             },
         context_instance=RequestContext(request))
 
+def about(request):
+    """ Default view for the root """
+    return render_to_response('base/about.html',
+        {
+            'aboutClass': "current",
+        },
+        context_instance=RequestContext(request))
+
 def gear(request):
     """ Default view for the root """
     return render_to_response('base/gear.html',
@@ -85,4 +93,12 @@ def rental_terms(request):
     """ Default view for the root """
     return render_to_response('base/rental.terms.html',
         {},
+        context_instance=RequestContext(request))
+
+def faq(request):
+    """ Default view for the root """
+    return render_to_response('base/faq.html',
+        {
+            'faqClass': "current",
+        },
         context_instance=RequestContext(request))

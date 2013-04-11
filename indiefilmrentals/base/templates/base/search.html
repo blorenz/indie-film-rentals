@@ -10,18 +10,18 @@
 	<div class="container clearfix">
 		<div class="products twelve columns alpha">
 			
-			<h1>Search for "{{ query }}"</h1>
+			<h1>Search for <span class="yellow">"{{ query }}"</span></h1>
 			<div class="sub-category clearfix">				
 				{% if query %}
 		            <h3>Results</h3>
 
-		            {% for product in page.object_list %}...
+		            {% for product in page.object_list %}
 						<!-- print out subcategory products -->
 						<div class="three columns product">
 							<a href="{{product.object.get_absolute_url}}" class="img-block">
-								<img src="{{ product.object.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+								<img src="{{ product.object.get_product_image.image.url }}" alt="{{ product.object.get_product_image.description }}">
 							</a>
-							<a href="{{product.get_absolute_url}}">{{product.object.name}}</a>
+							<a href="{{product.object.get_absolute_url}}">{{product.object.name}}</a>
 						</div>							
 						{% if forloop.counter|divisibleby:"4" and not forloop.last %}
 							<hr>
@@ -44,12 +44,12 @@
 			</div><!-- End Sub Category -->
 			
 		</div><!-- products -->
-		<div class="four columns omega sidebar" style="height: 834px; overflow: visible;">
+		<div class="four columns omega sidebar">
 			<h3>Product Categories</h3>
 			<ul id="gear-nav">
 				{% for category in categories %}
 					{% if not category.parent_category %}
-						<li>
+						<li class="category-parent">
 							<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
 						</li>
 					{% endif %}

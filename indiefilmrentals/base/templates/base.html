@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/base.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/skeleton.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/layout.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/tooltipster.css">
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -23,7 +24,30 @@
 	{% include "base/head.html" %}
 	{% block content %}{% endblock %}
 	{% include "base/foot.html" %}
+	
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="{{ STATIC_URL }}js/match-heights.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.tooltipster.min.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.hoverIntent.minified.js"></script>
+	<script src="{{ STATIC_URL }}js/jquery.dcjqaccordion.2.7.min.js"></script>
+
+	
+	<script>
+		$(document).ready(function() {
+			$(".equal").equalHeights();
+			$('.tooltip').tooltipster();
+			$('#gear-nav').dcAccordion({
+				eventType: 'hover',
+				hoverDelay: 300,
+				autoClose: false,
+				saveState: false,
+				disableLink: false,
+				showCount: false,
+				menuClose: true,
+				speed: 'slow'
+			});
+		});
+	</script>
 </body>
 </html>

@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'shop_stripe',
     'userprofile',
     'csvimport',
+    'gunicorn',
 ]
 
 AUTH_PROFILE_MODULE = "userprofile.userprofile"

@@ -17,58 +17,64 @@
 		<div class="products twelve columns alpha">
 			
 			<h1>{{ category.name }}</h1>
+			{% with products=category.get_products %}					
+				{% for product in products %}
+					<!-- print out category products -->
+					<div class="three columns product">
+						<a href="{{product.get_absolute_url}}" class="img-block">
+							<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+						</a>
+						<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+					</div>							
+					{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+						<hr>
+					{% endif %}
+				{% endfor %}
+			{% endwith %}
 			<div class="sub-category clearfix">				
 				{% for subcategory in subcategories %}
 					{% if not forloop.first %}
 						<hr>
 					{% endif %}
-					<h3>{{subcategory.name}}</h3>
-					{% with products=subcategory.get_products %}					
-						{% for product in products %}
-							<!-- print out subcategory products -->
-							<div class="three columns product">
-								<a href="{{product.get_absolute_url}}" class="img-block">
-									<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
-								</a>
-								<a href="{{product.get_absolute_url}}">{{product.name}}</a>
-							</div>							
-							{% if forloop.counter|divisibleby:"4" and not forloop.last %}
-								<hr>
-							{% endif %}
-						{% endfor %}
-					{% endwith %}
+					<a href="{{subcategory.get_absolute_url}}"><h3>{{subcategory.name}}</h3></a>
+					
+					{% if subcategory.get_products %}
+						{% with products=subcategory.get_products %}					
+							{% for product in products %}
+								<!-- print out subcategory products -->
+								<div class="three columns product">
+									<a href="{{product.get_absolute_url}}" class="img-block">
+										<img src="{{ product.get_product_image.image.url }}" alt="{{ product.get_product_image.description }}">
+									</a>
+									<a href="{{product.get_absolute_url}}">{{product.name}}</a>
+								</div>							
+								{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+									<hr>
+								{% endif %}
+							{% endfor %}
+						{% endwith %}
+					{% endif %}
                 {% endfor %}
 			</div><!-- End Sub Category -->
 			
 		</div><!-- products -->
-		<div class="four columns omega sidebar" style="height: 834px; overflow: visible;">
+		<div class="four columns omega sidebar">
 			<h3>Product Categories</h3>
 			<ul id="gear-nav">
 				{% for category in categories %}
-					{% if not category.parent_category %}
-						<li>
-							<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
-						</li>
-					{% endif %}
+					<li class="category-parent">
+						<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
+						<ul class="sub-nav" style="display: none">
+							{% for sub in all_subs %}
+								{% ifequal sub.parent_category.name category.name %}
+									<li><a href="{{ sub.get_absolute_url }}"><i></i>{{ sub.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+					</li>
                 {% endfor %}
-				<!--li><a href="#"><i class="icon audio"></i>Audio</a></li>
-				<li><a href="#"><i class="icon battery"></i>Batteries &amp; Power</a></li>
-				<li><a href="#"><i class="icon camera"></i>Cameras</a></li>
-				<li><a href="#"><i class="icon recorder"></i>Digital Recorders, Media, VTRs</a></li>
-				<li><a href="#"><i class="icon computer"></i>Edit &amp; Transfer Systems</a></li>
-				<li><a href="#"><i class="icon grip"></i>Grip</a></li>
-				<li><a href="#"><i class="icon lens"></i>Lenses and Accessories</a></li>
-				<li><a href="#"><i class="icon lighting"></i>Lighting</a></li>
-				<li><a href="#"><i class="icon mattebox"></i>Matte Box, Follow Focus, Filters</a></li>
-				<li><a href="#"><i class="icon monitor"></i>Monitors</a></li>
-				<li><a href="#"><i class="icon multi-cam"></i>Multi-Camera Switcher Packages</a></li>
-				<li><a href="#"><i class="icon other"></i>Other Services</a></li>
-				<li><a href="#"><i class="icon tape"></i>Tape Stock</a></li>
-				<li><a href="#"><i class="icon prompter"></i>Teleprompter</a></li>
-				<li><a href="#"><i class="icon conversion"></i>Timecode and Signal Conversion</a></li>
-				<li><a href="#"><i class="icon tripod"></i>Tripods, Dollies, Support Rigs</a></li>
-				<li><a href="#"><i class="icon projector"></i>Video Projection</a></li-->
 			</ul>
+			
 		</div><!-- End Product Sidebar -->
 
 	</div><!-- End Container -->

@@ -7,7 +7,7 @@
 <!-- Start category -->
 <div id="hero">
 	<div class="container clearfix">
-		<h2>We have Ohio's <span class="ltblue">largest selection</span> of film, HD &amp; cine <span class="yellow">cameras and lenses.</span></h2>
+		<h2>Central Ohio's <span class="ltblue">largest selection</span> of HD &amp; cine <span class="yellow">cameras, lenses and Accessories.</span></h2>
 	</div>	
 </div>
 
@@ -17,7 +17,10 @@
 		
 		<div class="twelve columns products alpha">
 			<h1>Equipment <span class="yellow">Rental</span></h1>
-			<p class="category-description oversized">We have the gear and the technical expertise to make sure your next shoot is a success. Navigate our full inventory using the categories to the right.</p>
+			<p class="category-description oversized">Ohio HD Video and Cine has the gear and expertise needed to make your next shoot a success. Navigate our full inventory using the categories to the right.</p>
+			
+			<p>When you rent from Ohio HD Video, our staff technicians prepare and QC each rental package to your specifications. We offer two camera prep stations for Camera Assistants to efficiently prepare and check their package.</p>
+			
 			<div class="sub-category clearfix">
 				
 				<h3>Featured Gear</h3>
@@ -37,12 +40,12 @@
 			</div><!-- End Sub Category -->
 		</div><!-- products -->
 		
-		<div class="four columns omega sidebar" style="height: 834px; overflow: visible;">
+		<div class="four columns omega sidebar">
 			<h3>Product Categories</h3>
 			<ul id="gear-nav">
 				{% for category in categories %}
 					{% if not category.parent_category %}
-						<li>
+						<li class="category-parent">
 							<a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
 						</li>
 					{% endif %}

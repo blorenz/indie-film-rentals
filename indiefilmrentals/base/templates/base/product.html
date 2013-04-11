@@ -9,7 +9,7 @@
 <div id="main-content">
     <div class="container clearfix">
 	
-        <div class="twelve columns products alpha equal">
+        <div class="twelve columns products alpha">
             <div id="breadcrumbs" class="row">
                 <a href="#">Gear Rental</a><span class="seperator">/</span><a href="{{ category_link }}">{{ product.ohd_category }}</a><span class="seperator">/</span>{{ product.name }}
             </div>
@@ -43,12 +43,12 @@
             </div>
         </div><!-- End products -->
     
-        <div class="four columns omega sidebar equal" style="height: 834px; overflow: visible;">
+        <div class="four columns omega sidebar">
             <h3>Product Categories</h3>
             <ul id="gear-nav">
                 {% for category in categories %}
                     {% if not category.parent_category %}
-                        <li>
+                        <li class="category-parent">
                             <a href="{{ category.get_absolute_url }}"><i></i>{{ category.name }}</a>
                         </li>
                     {% endif %}

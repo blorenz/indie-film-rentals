@@ -2,7 +2,7 @@ from django.core.mail import send_mail
 
 
 def send_email_to_ohiohd(**kwargs):
-    to_email = 'nat.hagey@gmail.com'
+    to_email = 'ohiohd@ohiohd.com'
     subject = 'Request to OhioHD'
     from_email = 'ohiohd@ohiohd.com'
 

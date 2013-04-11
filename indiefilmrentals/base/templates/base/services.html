@@ -5,11 +5,46 @@
 
 {% block content %}
 
+<div id="hero">
+	<div class="container clearfix">
+		<h2>Let us handle the <span class="ltblue">workflow</span> so you can focus on being <span class="yellow">creative.</span></h2>
+	</div>	
+</div><!-- End Hero -->
+
 <div id="main-content">
 	<div class="container clearfix">
 		<div class="sixteen columns alpha omega">
 			<h1>Production <span class="yellow">Services</span></h1>
-			<p class="dbl-bottom oversized">The Production world has certainly become a whole lot more complicated in the past few years. New cameras, formats, codecs &amp; gamma curves have made it necessary to rethink how we deal with data, archiving and color grading. Ohio HD Video is there to help with on-set data management and color grading services. Let us handle the workflow while you handle the creative. Call or Email us for more details.</p>
+			
+			<div class="row">
+				<div class="one-third column alpha">
+					<img src="{{ STATIC_URL }}img/services_david-color-grading.jpg" alt="David color grading">
+				</div>
+			
+				<div class="two-thirds column omega">
+					<p class="dbl-bottom oversized">Ohio HD Video offers a broad range of production services that cover everything from “script to screen.”  We work with clients to produce commercials, business-to-business projects, broadcast television, music video, sports, narrative, internet videos.</p>
+			
+					<h3>On-Set Services</h3>
+					<p>We know the production world has become a lot more complicated during the past few years. New cameras, formats, codecs, and gamma curves have made it necessary to rethink how we shoot, manage, edit, grade, and deliver footage.  Ohio HD Video is here with solutions for on-set data management, video playback, and color grading services. Let us handle the workflow while you handle the creative.</p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="one-third column services-feature alpha">
+					<img src="{{ STATIC_URL }}img/services_color-wheels.jpg">
+					<h3>Color Grading</h3>
+				</div>
+
+				<div class="one-third column services-feature">
+					<img src="{{ STATIC_URL }}img/services_data-cards.jpg">
+					<h3>Data Management</h3>
+				</div>
+
+				<div class="one-third column services-feature omega">
+					<img src="{{ STATIC_URL }}img/services_camera-setup.jpg">
+					<h3>Camera Setup + More!</h3>
+				</div>			
+			</div>
 			
 			<div class="well clearfix">
 				<h3 class="headline">Learn more about our workflow solutions:</h3>
